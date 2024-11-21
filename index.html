@@ -160,6 +160,7 @@
         #file-input {
             display: none;
         }
+        /* 其他样式保持不变 */
     </style>
 </head>
 <body>
@@ -171,7 +172,7 @@
             <div class="input-row">
                 <button class="action-button add-image-button" onclick="document.getElementById('file-input').click()">+</button>
                 <textarea id="user-input" placeholder="请输入您的问题..."></textarea>
-                <button id="send-button" class="action-button" onclick="debouncedSendMessage()">发送</button>
+                <button id="send-button" class="action-button" onclick="sendMessage()">发送</button>
             </div>
             <input type="file" id="file-input" accept="image/*" multiple>
         </div>
@@ -180,7 +181,7 @@
 
     <script>
         // 配置 Worker URL（部署后需要修改）
-        const WORKER_URL = 'https://yellow-water-e4de.zijiangao-mail.workers.dev/';
+		const WORKER_URL = 'https://yellow-water-e4de.zijiangao-mail.workers.dev/';
         
         // 初始化变量
         let conversationHistory = [
@@ -188,19 +189,6 @@
         ];
         let isProcessing = false;
         let uploadedImages = [];
-
-        // 防抖函数
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
 
         // 处理图片上传
         const fileInput = document.getElementById('file-input');
@@ -389,9 +377,6 @@
             sendButton.disabled = false;
         }
 
-        // 创建防抖后的发送消息函数
-        const debouncedSendMessage = debounce(sendMessage, 300);
-
         // 添加消息到聊天框
         function appendMessage(message, isUser) {
             if (!message) return;
@@ -429,7 +414,7 @@
         document.getElementById('user-input').addEventListener('keydown', function(e) {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
-                debouncedSendMessage();
+                sendMessage();
             }
         });
     </script>
