@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPT-4对话助手2</title>
+    <title>GPT-4对话助手</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -176,12 +176,12 @@
             </div>
             <input type="file" id="file-input" accept="image/*" multiple>
         </div>
-        <div id="loading" class="loading">正在思考中2...</div>
+        <div id="loading" class="loading">正在思考中...</div>
     </div>
 
     <script>
         // 配置 Worker URL（部署后需要修改）
-		const WORKER_URL = 'https://chatcurtin.org/';
+		const WORKER_URL = 'https://yellow-water-e4de.zijiangao-mail.workers.dev/';
         
         // 初始化变量
         let conversationHistory = [
